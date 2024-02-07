@@ -13,7 +13,7 @@
           <router-link
             to="/"
             class="flex items-center py-3 px-2 text-gray-900 rounded-lg hover:bg-[#E3F2FD]"
-            :class="{ 'bg-[#E3F2FD]': $route.path === '' }"
+            :class="{ 'bg-[#E3F2FD]': $route.path === '/' }"
           >
             <img src="/src/assets/icons/dashboard.png" alt="dashboard" />
             <span class="ms-3 text-[#424242]">Dashboard</span>
@@ -34,4 +34,8 @@
   </aside>
 </template>
 
-<script setup></script>
+<script setup>
+  import { useRouter } from 'vue-router';
+
+  const router = useRouter();
+</script>

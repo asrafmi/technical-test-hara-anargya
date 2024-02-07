@@ -8,7 +8,9 @@
     <LeftNavigation />
     <div class="flex flex-col basis-5/6">
       <Header />
-      <RouterView />
+      <div class="bg-[#F7F8FA] h-full p-10">
+        <RouterView />
+      </div>
     </div>
   </div>
 </template>
