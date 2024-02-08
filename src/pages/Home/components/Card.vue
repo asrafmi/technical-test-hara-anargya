@@ -33,15 +33,18 @@
             <p class="text-[10px] text-[#AAAAAA]">{{ period }}</p>
           </div>
         </div>
-        <div>
-          <p class="text-[#6E6E6E] text-[10px]">{{ action }}</p>
+        <div @click="openDialog">
+          <p class="text-[#6E6E6E] text-[10px] hover:text-gray-700">{{ action }}</p>
         </div>
       </div>
     </div>
+    <Dialog :visible="dialogVisible" @update:visible="handleDialogVisibility" title="Coming Soon!" description="This feature will be release soon, stay with us!" comingSoon/>
   </div>
 </template>
 
 <script setup>
+  import { ref } from 'vue';
+  import Dialog from '../../../components/Dialog.vue';
   const props = defineProps({
     title: String,
     amount: String,
@@ -51,6 +54,15 @@
     period: String,
     action: String,
   });
+  const dialogVisible = ref(false);
+
+  const openDialog = () => {
+    dialogVisible.value = !dialogVisible.value;
+  };
+
+  const handleDialogVisibility = (value) => {
+    dialogVisible.value = value;
+  };
   // @ts-ignore
   const [amountBeforeDecimal, amountAfterDecimal] = props.amount?.split(',');
   console.log('amountBeforeDecimal', amountBeforeDecimal);
