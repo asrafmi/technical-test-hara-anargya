@@ -1,10 +1,10 @@
 <template>
   <aside
     id="default-sidebar"
-    class="top-0 left-0 z-40 basis-1/6 h-screen transition-transform -translate-x-full shadow-md sm:translate-x-0"
+    class="fixed top-0 left-0 z-40 w-64 h-screen shadow-md transition-transform -translate-x-full sm:translate-x-0"
     aria-label="Sidebar"
   >
-    <div class="h-full px-3 py-4 overflow-y-auto bg-whit">
+    <div class="h-full px-3 py-4 overflow-y-auto bg-white">
       <div class="py-4 px-2">
         <h1 class="text-[30px] font-bold text-[#152544]">heylink.</h1>
       </div>
