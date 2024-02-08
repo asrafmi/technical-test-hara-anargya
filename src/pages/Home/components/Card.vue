@@ -65,6 +65,4 @@
   };
   // @ts-ignore
   const [amountBeforeDecimal, amountAfterDecimal] = props.amount?.split(',');
-  console.log('amountBeforeDecimal', amountBeforeDecimal);
-  console.log('amountAfterDecimal', amountAfterDecimal);
 </script>
