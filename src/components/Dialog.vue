@@ -1,5 +1,5 @@
 <template>
-  <transition name="dialog">
+  <transition name="dialog" ref="el">
     <div
       v-if="visible"
       class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
@@ -63,7 +63,7 @@
             <h1 class="text-[#080808] text-lg font-semibold">{{ title }}</h1>
           </div>
           <div class="flex flex-col gap-2 justify-center items-center">
-            <img src="../assets/images/deadline.jpg" class="w-64 h-64"/>
+            <img src="../assets/images/deadline.jpg" class="w-64 h-64" />
             <p class="text-black">{{ description }}</p>
           </div>
         </div>
@@ -81,8 +81,12 @@
 <script setup>
   import { Icon } from '@iconify/vue';
   import { formatDate } from '../utils/general';
+  import { onClickOutside } from '@vueuse/core';
+  import { ref } from 'vue';
 
   const emit = defineEmits(['update:visible']);
+
+  const el = ref();
 
   const props = defineProps({
     visible: Boolean,
@@ -92,9 +96,10 @@
     description: String,
   });
 
-  const closeDialog = () => {
+  const closeDialog = (event) => {
     emit('update:visible', false);
   };
+  onClickOutside(el, closeDialog);
 </script>
 
 <style scoped>

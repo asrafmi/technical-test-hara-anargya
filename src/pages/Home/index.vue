@@ -40,7 +40,11 @@
             <tr
               v-for="(item, index) in userData.users"
               :key="index"
-              class="bg-white text-[#080808] shadow-inner"
+              :class="
+                isBGChanged === index
+                  ? 'bg-gray-600'
+                  : 'bg-white' + 'text-[#080808] shadow-inner'
+              "
             >
               <td class="px-6 py-4 text-center text-[12px]">
                 {{ index + 1 }}
@@ -67,9 +71,17 @@
               </td>
               <td class="px-6">
                 <div class="flex flex-row gap-2 justify-center items-center">
-                  <button class="px-4 py-1 shadow-md text-[10px] text-center">
-                    Select
-                  </button>
+                  <div class="flex items-center">
+                    <input
+                      @click="changeBackroundRow(index)"
+                      id="checkbox-table-search-1"
+                      type="checkbox"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label for="checkbox-table-search-1" class="sr-only"
+                      >checkbox</label
+                    >
+                  </div>
                   <button
                     @click="openDialog(item)"
                     class="px-4 py-1 shadow-md text-[10px] text-center"
@@ -124,6 +136,7 @@
   const dialogVisible = ref(false);
   const userDetail = ref({});
   const isLoading = ref(true);
+  const isBGChanged = ref(null);
 
   const openDialog = (item) => {
     dialogVisible.value = !dialogVisible.value;
@@ -143,6 +156,10 @@
     } finally {
       isLoading.value = false;
     }
+  }
+
+  function changeBackroundRow(id) {
+    isBGChanged.value = isBGChanged.value === id ? null : id;
   }
 
   onMounted(fetchUserData);
